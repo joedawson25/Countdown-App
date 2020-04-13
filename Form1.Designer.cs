@@ -73,10 +73,12 @@
             this.amCheckbox = new System.Windows.Forms.CheckBox();
             this.pmCheckbox = new System.Windows.Forms.CheckBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // eventNameText
@@ -478,6 +480,10 @@
             this.dateTimePicker.Size = new System.Drawing.Size(299, 26);
             this.dateTimePicker.TabIndex = 21;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // appForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -509,6 +515,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -560,6 +567,7 @@
         private System.Windows.Forms.CheckBox amCheckbox;
         private System.Windows.Forms.CheckBox pmCheckbox;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 

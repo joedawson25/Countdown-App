@@ -90,277 +90,328 @@ namespace Countdown_App
         private void addButton_Click(object sender, EventArgs e)
         {
             today = DateTime.Now;
+            errorProvider1.Clear();
 
-            if (eventList.Count < 4)
+            if (!string.IsNullOrEmpty(eventNameText.Text))
             {
-                if (int.TryParse(timeStartText.Text, out int n) && n > 0 && n < 13)
+
+                if (!string.IsNullOrEmpty(locationText.Text))
                 {
 
-                    if ((amCheckbox.Checked && pmCheckbox.Checked) || (!pmCheckbox.Checked && !amCheckbox.Checked))
+                    if (eventList.Count < 4)
                     {
-                        welcomeLabel.Text = "Please select only AM OR PM, not both";
-                        amCheckbox.Checked = false;
-                        pmCheckbox.Checked = false;
+                        
+                            if (int.TryParse(timeStartText.Text, out int n) && n > 0 && n < 13)
+                            {
+
+                                if ((amCheckbox.Checked && pmCheckbox.Checked) || (!pmCheckbox.Checked && !amCheckbox.Checked))
+                                {
+                                    errorProvider1.SetError(label1, "Please check AM OR PM");
+                                    amCheckbox.Checked = false;
+                                    pmCheckbox.Checked = false;
+                                }
+                                else
+                                {
+                                    errorProvider1.Clear();
+
+                                    Event eventCountdown = new Event(eventNameText.Text, locationText.Text,
+                                         dateTimePicker.Value, timeStartText.Text);
+
+                                    eventList.Add(eventCountdown);
+
+                                    if (groupBox1.Visible == false)
+                                    {
+                                        groupBox1.Visible = true;
+                                        group1Name.Text = eventNameText.Text;
+                                        group1Location.Text = locationText.Text;
+                                        group1Date.Text = dateTimePicker.Value.ToShortDateString();
+
+                                        if (amCheckbox.Checked)
+                                        {
+                                            group1Time.Text = timeStartText.Text + " " + "AM";
+                                        }
+                                        else
+                                        {
+                                            group1Time.Text = timeStartText.Text + " " + "PM";
+                                        }
+
+                                        int hour = int.Parse(timeStartText.Text);
+
+
+                                        if (amCheckbox.Checked)
+                                        {
+                                            if (hour != 12)
+                                            {
+                                                _group1EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, int.Parse(timeStartText.Text), 0, 0);
+                                            }
+                                            else
+                                            {
+                                                _group1EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 0, 0, 0);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (hour != 12)
+                                            {
+                                                _group1EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, (int.Parse(timeStartText.Text) + 12), 0, 0);
+                                            }
+                                            else
+                                            {
+                                                _group1EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 12, 0, 0);
+                                            }
+                                        }
+
+                                        diff1 = _group1EventDateTime - today;
+
+                                    if (diff1.Hours >= 0)
+                                    {
+
+                                        _g1Time = SetTime(diff1.Days, diff1.Hours, diff1.Minutes, diff1.Seconds);
+                                        group1Countdown.Text = _g1Time;
+                                        t1days = diff1.Days;
+                                        t1hour = diff1.Hours;
+                                        t1minute = diff1.Minutes;
+                                        t1second = diff1.Seconds;
+
+
+
+                                        timer1.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        errorProvider1.SetError(label1, "Please pick a time in the future");
+                                        groupBox1.Visible = false;
+                                    }
+
+
+
+                                    }
+                                    else if (groupBox2.Visible == false)
+                                    {
+                                        groupBox2.Visible = true;
+                                        group2Name.Text = eventNameText.Text;
+                                        group2Location.Text = locationText.Text;
+                                        group2Date.Text = dateTimePicker.Value.ToShortDateString();
+                                        if (amCheckbox.Checked)
+                                        {
+                                            group2Time.Text = timeStartText.Text + " " + "AM";
+                                        }
+                                        else
+                                        {
+                                            group2Time.Text = timeStartText.Text + " " + "PM";
+                                        }
+
+                                        int hour = int.Parse(timeStartText.Text);
+
+
+                                        if (amCheckbox.Checked)
+                                        {
+                                            if (hour != 12)
+                                            {
+                                                _group2EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, int.Parse(timeStartText.Text), 0, 0);
+                                            }
+                                            else
+                                            {
+                                                _group2EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 0, 0, 0);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (hour != 12)
+                                            {
+                                                _group2EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, (int.Parse(timeStartText.Text) + 12), 0, 0);
+                                            }
+                                            else
+                                            {
+                                                _group2EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 12, 0, 0);
+                                            }
+                                        }
+
+                                        diff2 = _group2EventDateTime - today;
+
+                                    if (diff2.Hours >= 0)
+                                    {
+                                        _g2Time = SetTime(diff2.Days, diff2.Hours, diff2.Minutes, diff2.Seconds);
+                                        group2Countdown.Text = _g2Time;
+                                        t2days = diff2.Days;
+                                        t2hour = diff2.Hours;
+                                        t2minute = diff2.Minutes;
+                                        t2second = diff2.Seconds;
+
+
+
+                                        timer2.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        errorProvider1.SetError(label1, "Please picka time in the future");
+                                        groupBox2.Visible = false;
+                                    }
+
+                                    }
+                                    else if (groupBox3.Visible == false)
+                                    {
+                                        groupBox3.Visible = true;
+                                        group3Name.Text = eventNameText.Text;
+                                        group3Location.Text = locationText.Text;
+                                        group3Date.Text = dateTimePicker.Value.ToShortDateString();
+                                        if (amCheckbox.Checked)
+                                        {
+                                            group3Time.Text = timeStartText.Text + " " + "AM";
+                                        }
+                                        else
+                                        {
+                                            group3Time.Text = timeStartText.Text + " " + "PM";
+                                        }
+
+                                        int hour = int.Parse(timeStartText.Text);
+
+
+                                        if (amCheckbox.Checked)
+                                        {
+                                            if (hour != 12)
+                                            {
+                                                _group3EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, int.Parse(timeStartText.Text), 0, 0);
+                                            }
+                                            else
+                                            {
+                                                _group3EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 0, 0, 0);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (hour != 12)
+                                            {
+                                                _group3EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, (int.Parse(timeStartText.Text) + 12), 0, 0);
+                                            }
+                                            else
+                                            {
+                                                _group3EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 12, 0, 0);
+                                            }
+                                        }
+
+                                        diff3 = _group3EventDateTime - today;
+
+                                    if (diff3.Hours >= 0)
+                                    {
+                                        _g3Time = SetTime(diff3.Days, diff3.Hours, diff3.Minutes, diff3.Seconds);
+                                        group3Countdown.Text = _g3Time;
+                                        t3days = diff3.Days;
+                                        t3hour = diff3.Hours;
+                                        t3minute = diff3.Minutes;
+                                        t3second = diff3.Seconds;
+
+
+
+                                        timer3.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        errorProvider1.SetError(label1, "Please pick a time in the future");
+                                        groupBox3.Visible = false;
+                                    }
+
+                                    }
+                                    else
+                                    {
+                                        groupBox4.Visible = true;
+                                        group4Name.Text = eventNameText.Text;
+                                        group4Location.Text = locationText.Text;
+                                        group4Date.Text = dateTimePicker.Value.ToShortDateString();
+                                        if (amCheckbox.Checked)
+                                        {
+                                            group4Time.Text = timeStartText.Text + " " + "AM";
+                                        }
+                                        else
+                                        {
+                                            group4Time.Text = timeStartText.Text + " " + "PM";
+                                        }
+
+                                        int hour = int.Parse(timeStartText.Text);
+
+
+                                        if (amCheckbox.Checked)
+                                        {
+                                            if (hour != 12)
+                                            {
+                                                _group4EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, int.Parse(timeStartText.Text), 0, 0);
+                                            }
+                                            else
+                                            {
+                                                _group4EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 0, 0, 0);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (hour != 12)
+                                            {
+                                                _group4EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, (int.Parse(timeStartText.Text) + 12), 0, 0);
+                                            }
+                                            else
+                                            {
+                                                _group4EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 12, 0, 0);
+                                            }
+                                        }
+
+                                        diff4 = _group4EventDateTime - today;
+
+                                    if (diff4.Hours >= 0)
+                                    {
+                                        _g4Time = SetTime(diff4.Days, diff4.Hours, diff4.Minutes, diff4.Seconds);
+                                        group4Countdown.Text = _g4Time;
+                                        t4days = diff4.Days;
+                                        t4hour = diff4.Hours;
+                                        t4minute = diff4.Minutes;
+                                        t4second = diff4.Seconds;
+
+
+
+                                        timer4.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        errorProvider1.SetError(label1, "Please pick a time in the future");
+                                        groupBox4.Visible = false;
+                                    }
+
+                                    }
+
+                                    eventNameText.Clear();
+                                    locationText.Clear();
+                                    dateTimePicker.ResetText();
+                                    timeStartText.Clear();
+                                    amCheckbox.Checked = false;
+                                    pmCheckbox.Checked = false;
+                                    welcomeLabel.Text = "Welcome to the Countdown App! Keep track of up to four events that you can't wait for!";
+
+                                }
+                            }
+                            else
+                            {
+                                errorProvider1.SetError(label1,"Please Enter a Valid Hour");
+                            }
+                        
+                        
                     }
                     else
                     {
-
-                        Event eventCountdown = new Event(eventNameText.Text, locationText.Text,
-                             dateTimePicker.Value, timeStartText.Text);
-
-                        eventList.Add(eventCountdown);
-
-                        if (groupBox1.Visible == false)
-                        {
-                            groupBox1.Visible = true;
-                            group1Name.Text = eventNameText.Text;
-                            group1Location.Text = locationText.Text;
-                            group1Date.Text = dateTimePicker.Value.ToShortDateString();
-
-                            if (amCheckbox.Checked)
-                            {
-                                group1Time.Text = timeStartText.Text + " " + "AM";
-                            }
-                            else
-                            {
-                                group1Time.Text = timeStartText.Text + " " + "PM";
-                            }
-
-                            int hour = int.Parse(timeStartText.Text);
-
-
-                            if (amCheckbox.Checked)
-                            {
-                                if (hour != 12)
-                                {
-                                    _group1EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, int.Parse(timeStartText.Text), 0, 0);
-                                }
-                                else
-                                {
-                                    _group1EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 0, 0, 0);
-                                }
-                            }
-                            else
-                            {
-                                if (hour != 12)
-                                {
-                                    _group1EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, (int.Parse(timeStartText.Text)+12), 0, 0);
-                                }
-                                else
-                                {
-                                    _group1EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 12, 0, 0);
-                                }
-                            }
-
-                            diff1 = _group1EventDateTime - today;
-
-                            _g1Time = SetTime(diff1.Days, diff1.Hours, diff1.Minutes, diff1.Seconds);
-                            group1Countdown.Text = _g1Time;
-                            t1days = diff1.Days;
-                            t1hour = diff1.Hours;
-                            t1minute = diff1.Minutes;
-                            t1second = diff1.Seconds;
-                            
-                            
-
-                            timer1.Enabled = true;
-                            
-
-                            
-                        }
-                        else if (groupBox2.Visible == false)
-                        {
-                            groupBox2.Visible = true;
-                            group2Name.Text = eventNameText.Text;
-                            group2Location.Text = locationText.Text;
-                            group2Date.Text = dateTimePicker.Value.ToShortDateString();
-                            if (amCheckbox.Checked)
-                            {
-                                group2Time.Text = timeStartText.Text + " " + "AM";
-                            }
-                            else
-                            {
-                                group2Time.Text = timeStartText.Text + " " + "PM";
-                            }
-
-                            int hour = int.Parse(timeStartText.Text);
-
-
-                            if (amCheckbox.Checked)
-                            {
-                                if (hour != 12)
-                                {
-                                    _group2EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, int.Parse(timeStartText.Text), 0, 0);
-                                }
-                                else
-                                {
-                                    _group2EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 0, 0, 0);
-                                }
-                            }
-                            else
-                            {
-                                if (hour != 12)
-                                {
-                                    _group2EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, (int.Parse(timeStartText.Text) + 12), 0, 0);
-                                }
-                                else
-                                {
-                                    _group2EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 12, 0, 0);
-                                }
-                            }
-
-                            diff2 = _group2EventDateTime - today;
-
-                            
-                            _g2Time = SetTime(diff2.Days, diff2.Hours, diff2.Minutes, diff2.Seconds);
-                            group2Countdown.Text = _g2Time;
-                            t2days = diff2.Days;
-                            t2hour = diff2.Hours;
-                            t2minute = diff2.Minutes;
-                            t2second = diff2.Seconds;
-                            
-                            
-
-                            timer2.Enabled = true;
-                            
-                        }
-                        else if (groupBox3.Visible == false)
-                        {
-                            groupBox3.Visible = true;
-                            group3Name.Text = eventNameText.Text;
-                            group3Location.Text = locationText.Text;
-                            group3Date.Text = dateTimePicker.Value.ToShortDateString();
-                            if (amCheckbox.Checked)
-                            {
-                                group3Time.Text = timeStartText.Text + " " + "AM";
-                            }
-                            else
-                            {
-                                group3Time.Text = timeStartText.Text + " " + "PM";
-                            }
-
-                            int hour = int.Parse(timeStartText.Text);
-
-
-                            if (amCheckbox.Checked)
-                            {
-                                if (hour != 12)
-                                {
-                                    _group3EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, int.Parse(timeStartText.Text), 0, 0);
-                                }
-                                else
-                                {
-                                    _group3EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 0, 0, 0);
-                                }
-                            }
-                            else
-                            {
-                                if (hour != 12)
-                                {
-                                    _group3EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, (int.Parse(timeStartText.Text) + 12), 0, 0);
-                                }
-                                else
-                                {
-                                    _group3EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 12, 0, 0);
-                                }
-                            }
-
-                            diff3 = _group3EventDateTime - today;
-
-                            
-                            _g3Time = SetTime(diff3.Days, diff3.Hours, diff3.Minutes, diff3.Seconds);
-                            group3Countdown.Text = _g3Time;
-                            t3days = diff3.Days;
-                            t3hour = diff3.Hours;
-                            t3minute = diff3.Minutes;
-                            t3second = diff3.Seconds;
-                            
-                            
-
-                            timer3.Enabled = true;
-                           
-                        }
-                        else
-                        {
-                            groupBox4.Visible = true;
-                            group4Name.Text = eventNameText.Text;
-                            group4Location.Text = locationText.Text;
-                            group4Date.Text = dateTimePicker.Value.ToShortDateString();
-                            if (amCheckbox.Checked)
-                            {
-                                group4Time.Text = timeStartText.Text + " " + "AM";
-                            }
-                            else
-                            {
-                                group4Time.Text = timeStartText.Text + " " + "PM";
-                            }
-
-                            int hour = int.Parse(timeStartText.Text);
-
-
-                            if (amCheckbox.Checked)
-                            {
-                                if (hour != 12)
-                                {
-                                    _group4EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, int.Parse(timeStartText.Text), 0, 0);
-                                }
-                                else
-                                {
-                                    _group4EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 0, 0, 0);
-                                }
-                            }
-                            else
-                            {
-                                if (hour != 12)
-                                {
-                                    _group4EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, (int.Parse(timeStartText.Text) + 12), 0, 0);
-                                }
-                                else
-                                {
-                                    _group4EventDateTime = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day, 12, 0, 0);
-                                }
-                            }
-
-                            diff4= _group4EventDateTime - today;
-
-                           
-                            _g4Time = SetTime(diff4.Days, diff4.Hours, diff4.Minutes, diff4.Seconds);
-                            group4Countdown.Text = _g4Time;
-                            t4days = diff4.Days;
-                            t4hour = diff4.Hours;
-                            t4minute = diff4.Minutes;
-                            t4second = diff4.Seconds;
-                            
-                            
-
-                            timer4.Enabled = true;
-                            
-                        }
-
+                        welcomeLabel.Text = "Sorry! Only four events can be added!";
                         eventNameText.Clear();
                         locationText.Clear();
                         dateTimePicker.ResetText();
                         timeStartText.Clear();
                         amCheckbox.Checked = false;
                         pmCheckbox.Checked = false;
-                        welcomeLabel.Text = "Welcome to the Countdown App! Keep track of up to four events that you can't wait for!";
-
                     }
                 }
                 else
                 {
-                    welcomeLabel.Text = "Please enter a valid hour";
+                    errorProvider1.SetError(locationText, "Please enter a location");
                 }
             }
             else
             {
-                welcomeLabel.Text = "Sorry! Only four events can be added!";
-                eventNameText.Clear();
-                locationText.Clear();
-                dateTimePicker.ResetText();
-                timeStartText.Clear();
-                amCheckbox.Checked = false;
-                pmCheckbox.Checked = false;
+                errorProvider1.SetError(eventNameText, "Please enter an event name");
             }
 
             
