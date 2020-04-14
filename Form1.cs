@@ -420,141 +420,170 @@ namespace Countdown_App
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (t1days == 0 && t1second == 0 && t1minute == 0 && t1hour == 0)
+            if (t1second == 0)
             {
-                group1Countdown.Text = "It's Time!";
-                timer1.Enabled = false;
+                if (t1minute == 0)
+                {
+                    if (t1hour == 0)
+                    {
+                        if (t1days == 0)
+                        {
+                            group1Countdown.Text = "It's Time!";
+                            timer1.Enabled = false;
+                        }
+                        else
+                        {
+                            t1days = t1days - 1;
+                            t1hour = 23;
+                            t1minute = 59;
+                            t1second = 59;
+                        }
+                    }
+                    else
+                    {
+                        t1hour = t1hour - 1;
+                        t1minute = 59;
+                        t1second = 59;
+                    }
+                }
+                else
+                {
+                    t1minute = t1minute - 1;
+                    t1second = 59;
+                }
             }
             else
             {
-
-                if (t1second == 0 && t1minute > 0)
-                {
-                    t1minute = t1minute - 1;
-                    t1second = 60;
-                }
-
-                if (t1minute == 0 && t1hour > 0)
-                {
-                    t1hour = t1hour - 1;
-                    t1minute = 60;
-                }
-
-                if(t1hour == 0 && t1days >0)
-                {
-                    t1days = t1days - 1;
-                    t1hour = 24;
-                }
-
                 t1second = t1second - 1;
-
-                group1Countdown.Text = SetTime(t1days, t1hour, t1minute, t1second);
             }
 
-
-
+            group1Countdown.Text = SetTime(t1days, t1hour, t1minute, t1second);
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            if (t2days ==0 && t2second == 0 && t2minute == 0 && t2hour == 0)
+            if (t2second == 0)
             {
-                group2Countdown.Text = "It's Time!";
-                timer2.Enabled = false;
+                if (t2minute == 0)
+                {
+                    if (t2hour == 0)
+                    {
+                        if (t2days == 0)
+                        {
+                            group2Countdown.Text = "It's Time!";
+                            timer2.Enabled = false;
+                        }
+                        else
+                        {
+                            t2days = t2days - 1;
+                            t2hour = 23;
+                            t2minute = 59;
+                            t2second = 59;
+                        }
+                    }
+                    else
+                    {
+                        t2hour = t2hour - 1;
+                        t2minute = 59;
+                        t2second = 59;
+                    }
+                }
+                else
+                {
+                    t2minute = t2minute - 1;
+                    t2second = 59;
+                }
             }
             else
             {
-
-                if (t2second == 0 && t2minute > 0)
-                {
-                    t2minute = t2minute - 1;
-                    t2second = 60;
-                }
-
-                if (t2minute == 0 && t2hour > 0)
-                {
-                    t2hour = t2hour - 1;
-                    t2minute = 60;
-                }
-
-                if(t2hour == 0 && t2days >0)
-                {
-                    t2days = t2days - 1;
-                    t2hour = 24; 
-                }
-
                 t2second = t2second - 1;
-
-                group2Countdown.Text = SetTime(t2days, t2hour, t2minute, t2second);
             }
+
+            group2Countdown.Text = SetTime(t2days, t2hour, t2minute, t2second);
         }
 
         private void timer3_Tick(object sender, EventArgs e)
         {
-            if (t3days ==0 && t3second == 0 && t3minute == 0 && t3hour == 0)
+            if (t3second == 0)
             {
-                group3Countdown.Text = "It's Time!";
-                timer3.Enabled = false;
+                if (t3minute == 0)
+                {
+                    if (t3hour == 0)
+                    {
+                        if (t3days == 0)
+                        {
+                            group3Countdown.Text = "It's Time!";
+                            timer3.Enabled = false;
+                        }
+                        else
+                        {
+                            t3days = t3days - 1;
+                            t3hour = 23;
+                            t3minute = 59;
+                            t3second = 59;
+                        }
+                    }
+                    else
+                    {
+                        t3hour = t3hour - 1;
+                        t3minute = 59;
+                        t3second = 59;
+                    }
+                }
+                else
+                {
+                    t3minute = t3minute - 1;
+                    t3second = 59;
+                }
             }
             else
             {
-                if (t3second == 0 && t3minute > 0)
-                {
-                    t3minute = t3minute - 1;
-                    t3second = 60;
-                }
-
-                if (t3minute == 0 && t3hour > 0)
-                {
-                    t3hour = t3hour - 1;
-                    t3minute = 60;
-                }
-
-                if(t3hour ==0 && t3days>0)
-                {
-                    t3days = t3days - 1;
-                    t3hour = 24;
-                }
-
                 t3second = t3second - 1;
-
-                group3Countdown.Text = SetTime(t3days, t3hour, t3minute, t3second);
             }
+
+            group3Countdown.Text = SetTime(t3days, t3hour, t3minute, t3second);
         }
 
         private void timer4_Tick(object sender, EventArgs e)
         {
-            if (t4days ==0 && t4second == 0 && t4minute == 0 && t4hour == 0)
+            if (t4second == 0)
             {
-                group4Countdown.Text = "It's Time!";
-                timer4.Enabled = false;
-            }
-
-            else
-            {
-
-                if (t4second == 0 && t4minute > 0)
+                if (t4minute == 0)
+                {
+                    if (t4hour == 0)
+                    {
+                        if (t4days == 0)
+                        {
+                            group4Countdown.Text = "It's Time!";
+                            timer4.Enabled = false;
+                        }
+                        else
+                        {
+                            t4days = t4days - 1;
+                            t4hour = 23;
+                            t4minute = 59;
+                            t4second = 59;
+                        }
+                    }
+                    else
+                    {
+                        t4hour = t4hour - 1;
+                        t4minute = 59;
+                        t4second = 59;
+                    }
+                }
+                else
                 {
                     t4minute = t4minute - 1;
-                    t4second = 60;
+                    t4second = 59;
                 }
-
-                if (t4minute == 0 && t4hour > 0)
-                {
-                    t4hour = t4hour - 1;
-                    t4minute = 60;
-                }
-
-                if(t4hour ==0 && t4days >0)
-                {
-                    t4days = t4days - 1;
-                    t4hour = 24;
-                }
-
-                t4second = t4second - 1;
-
-                group4Countdown.Text = SetTime(t4days, t4hour, t4minute, t4second);
             }
+            else
+            {
+                t4second = t4second - 1;
+            }
+
+            group4Countdown.Text = SetTime(t4days, t4hour, t4minute, t4second);
         }
     }
 }
