@@ -114,11 +114,6 @@ namespace Countdown_App
                                 {
                                     errorProvider1.Clear();
 
-                                    Event eventCountdown = new Event(eventNameText.Text, locationText.Text,
-                                         dateTimePicker.Value, timeStartText.Text);
-
-                                    eventList.Add(eventCountdown);
-
                                     if (groupBox1.Visible == false)
                                     {
                                         groupBox1.Visible = true;
@@ -173,7 +168,10 @@ namespace Countdown_App
                                         t1minute = diff1.Minutes;
                                         t1second = diff1.Seconds;
 
+                                        Event eventCountdown = new Event(eventNameText.Text, locationText.Text,
+                                         dateTimePicker.Value, timeStartText.Text);
 
+                                        eventList.Add(eventCountdown);
 
                                         timer1.Enabled = true;
                                     }
@@ -238,7 +236,10 @@ namespace Countdown_App
                                         t2minute = diff2.Minutes;
                                         t2second = diff2.Seconds;
 
+                                        Event eventCountdown = new Event(eventNameText.Text, locationText.Text,
+                                         dateTimePicker.Value, timeStartText.Text);
 
+                                        eventList.Add(eventCountdown);
 
                                         timer2.Enabled = true;
                                     }
@@ -301,7 +302,10 @@ namespace Countdown_App
                                         t3minute = diff3.Minutes;
                                         t3second = diff3.Seconds;
 
+                                        Event eventCountdown = new Event(eventNameText.Text, locationText.Text,
+                                         dateTimePicker.Value, timeStartText.Text);
 
+                                        eventList.Add(eventCountdown);
 
                                         timer3.Enabled = true;
                                     }
@@ -364,7 +368,10 @@ namespace Countdown_App
                                         t4minute = diff4.Minutes;
                                         t4second = diff4.Seconds;
 
+                                        Event eventCountdown = new Event(eventNameText.Text, locationText.Text,
+                                         dateTimePicker.Value, timeStartText.Text);
 
+                                        eventList.Add(eventCountdown);
 
                                         timer4.Enabled = true;
                                     }
