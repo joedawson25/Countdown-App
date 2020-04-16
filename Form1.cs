@@ -241,7 +241,6 @@ namespace Countdown_App
 
                                         eventList.Add(eventCountdown);
 
-                                        timer2.Enabled = true;
                                     }
                                     else
                                     {
@@ -307,7 +306,6 @@ namespace Countdown_App
 
                                         eventList.Add(eventCountdown);
 
-                                        timer3.Enabled = true;
                                     }
                                     else
                                     {
@@ -373,7 +371,6 @@ namespace Countdown_App
 
                                         eventList.Add(eventCountdown);
 
-                                        timer4.Enabled = true;
                                     }
                                     else
                                     {
@@ -465,10 +462,7 @@ namespace Countdown_App
             }
 
             group1Countdown.Text = SetTime(t1days, t1hour, t1minute, t1second);
-        }
 
-        private void timer2_Tick(object sender, EventArgs e)
-        {
             if (t2second == 0)
             {
                 if (t2minute == 0)
@@ -478,7 +472,6 @@ namespace Countdown_App
                         if (t2days == 0)
                         {
                             group2Countdown.Text = "It's Time!";
-                            timer2.Enabled = false;
                         }
                         else
                         {
@@ -507,10 +500,7 @@ namespace Countdown_App
             }
 
             group2Countdown.Text = SetTime(t2days, t2hour, t2minute, t2second);
-        }
 
-        private void timer3_Tick(object sender, EventArgs e)
-        {
             if (t3second == 0)
             {
                 if (t3minute == 0)
@@ -520,7 +510,6 @@ namespace Countdown_App
                         if (t3days == 0)
                         {
                             group3Countdown.Text = "It's Time!";
-                            timer3.Enabled = false;
                         }
                         else
                         {
@@ -549,10 +538,7 @@ namespace Countdown_App
             }
 
             group3Countdown.Text = SetTime(t3days, t3hour, t3minute, t3second);
-        }
 
-        private void timer4_Tick(object sender, EventArgs e)
-        {
             if (t4second == 0)
             {
                 if (t4minute == 0)
@@ -562,7 +548,6 @@ namespace Countdown_App
                         if (t4days == 0)
                         {
                             group4Countdown.Text = "It's Time!";
-                            timer4.Enabled = false;
                         }
                         else
                         {
@@ -591,7 +576,9 @@ namespace Countdown_App
             }
 
             group4Countdown.Text = SetTime(t4days, t4hour, t4minute, t4second);
+
         }
+
     }
 }
        

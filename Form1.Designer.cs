@@ -67,9 +67,6 @@
             this.group4Name = new System.Windows.Forms.Label();
             this.group4Date = new System.Windows.Forms.Label();
             this.welcomeLabel = new System.Windows.Forms.Label();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.amCheckbox = new System.Windows.Forms.CheckBox();
             this.pmCheckbox = new System.Windows.Forms.CheckBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -439,21 +436,6 @@
             this.welcomeLabel.Text = "Welcome to the Countdown App! Keep track of up to four events that you can\'t wait" +
     " for!";
             // 
-            // timer2
-            // 
-            this.timer2.Interval = 1000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // timer3
-            // 
-            this.timer3.Interval = 1000;
-            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
-            // timer4
-            // 
-            this.timer4.Interval = 1000;
-            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
-            // 
             // amCheckbox
             // 
             this.amCheckbox.Location = new System.Drawing.Point(198, 343);
@@ -553,9 +535,6 @@
         private System.Windows.Forms.Label group4Name;
         private System.Windows.Forms.Label group4Date;
         private System.Windows.Forms.Label welcomeLabel;
-        private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Timer timer3;
-        private System.Windows.Forms.Timer timer4;
         private System.Windows.Forms.Label group1Countdown;
         private System.Windows.Forms.Label group2Countdown;
         private System.Windows.Forms.Label group3Countdown;
